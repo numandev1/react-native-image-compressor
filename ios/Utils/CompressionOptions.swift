@@ -13,6 +13,11 @@ enum OutputType: NSString {
     case JPG = "jpg"
 }
 
+enum InputType: NSString {
+    case BASE64 = "base64"
+    case URI = "uri"
+}
+
 @objc
 struct CompressionOptions {
     var width = 480
