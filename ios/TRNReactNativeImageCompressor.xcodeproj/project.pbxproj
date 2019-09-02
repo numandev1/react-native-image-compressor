@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		35B203383DA295EACE1B7AB1 /* libPods-TRNReactNativeImageCompressor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F37E8C12F281272C3DFB22 /* libPods-TRNReactNativeImageCompressor.a */; };
 		B0E9C60023194A92001191D6 /* TRNCompressorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C5FF23194A92001191D6 /* TRNCompressorManager.swift */; };
 		B0E9C60223194B28001191D6 /* TRNCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C60123194B28001191D6 /* TRNCompressor.m */; };
-		B0E9C60C231956BA001191D6 /* CompressionOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C60B231956BA001191D6 /* CompressionOptions.swift */; };
 		B0E9C60E23195C3B001191D6 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C60D23195C3B001191D6 /* Compressor.swift */; };
 /* End PBXBuildFile section */
 
@@ -28,14 +26,10 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libTRNReactNativeImageCompressor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTRNReactNativeImageCompressor.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		36F37E8C12F281272C3DFB22 /* libPods-TRNReactNativeImageCompressor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TRNReactNativeImageCompressor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		550928CCCBAE5A610E1C900E /* Pods-TRNReactNativeImageCompressor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRNReactNativeImageCompressor.debug.xcconfig"; path = "Target Support Files/Pods-TRNReactNativeImageCompressor/Pods-TRNReactNativeImageCompressor.debug.xcconfig"; sourceTree = "<group>"; };
 		B0E9C5FE23194A92001191D6 /* TRNReactNativeImageCompressor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TRNReactNativeImageCompressor-Bridging-Header.h"; sourceTree = "<group>"; };
 		B0E9C5FF23194A92001191D6 /* TRNCompressorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRNCompressorManager.swift; sourceTree = "<group>"; };
 		B0E9C60123194B28001191D6 /* TRNCompressor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRNCompressor.m; sourceTree = "<group>"; };
-		B0E9C60B231956BA001191D6 /* CompressionOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressionOptions.swift; sourceTree = "<group>"; };
 		B0E9C60D23195C3B001191D6 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
-		E6C444B15731F87EA2626221 /* Pods-TRNReactNativeImageCompressor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRNReactNativeImageCompressor.release.xcconfig"; path = "Target Support Files/Pods-TRNReactNativeImageCompressor/Pods-TRNReactNativeImageCompressor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,23 +37,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				35B203383DA295EACE1B7AB1 /* libPods-TRNReactNativeImageCompressor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0172AF0944D846D2916E5DFD /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				550928CCCBAE5A610E1C900E /* Pods-TRNReactNativeImageCompressor.debug.xcconfig */,
-				E6C444B15731F87EA2626221 /* Pods-TRNReactNativeImageCompressor.release.xcconfig */,
-			);
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		134814211AA4EA7D00B7C361 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,7 +54,6 @@
 		47FD578392B062CEF6C3411A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				36F37E8C12F281272C3DFB22 /* libPods-TRNReactNativeImageCompressor.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,7 +66,6 @@
 				B0E9C5FF23194A92001191D6 /* TRNCompressorManager.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
 				B0E9C5FE23194A92001191D6 /* TRNReactNativeImageCompressor-Bridging-Header.h */,
-				0172AF0944D846D2916E5DFD /* Pods */,
 				47FD578392B062CEF6C3411A /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -92,7 +73,6 @@
 		B0E9C606231955E1001191D6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B0E9C60B231956BA001191D6 /* CompressionOptions.swift */,
 				B0E9C60D23195C3B001191D6 /* Compressor.swift */,
 			);
 			path = Utils;
@@ -105,7 +85,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "TRNReactNativeImageCompressor" */;
 			buildPhases = (
-				A5BA8BA81FFDE7892E67F1F9 /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -152,31 +131,6 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A5BA8BA81FFDE7892E67F1F9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TRNReactNativeImageCompressor-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -184,7 +138,6 @@
 			files = (
 				B0E9C60E23195C3B001191D6 /* Compressor.swift in Sources */,
 				B0E9C60023194A92001191D6 /* TRNCompressorManager.swift in Sources */,
-				B0E9C60C231956BA001191D6 /* CompressionOptions.swift in Sources */,
 				B0E9C60223194B28001191D6 /* TRNCompressor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,7 +240,6 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 550928CCCBAE5A610E1C900E /* Pods-TRNReactNativeImageCompressor.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
@@ -309,7 +261,6 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E6C444B15731F87EA2626221 /* Pods-TRNReactNativeImageCompressor.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (

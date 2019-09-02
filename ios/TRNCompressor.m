@@ -8,16 +8,10 @@
 
 #import "React/RCTBridgeModule.h"
 
-@interface RCT_EXTERN_REMAP_MODULE(TRNCompressor, CompressorManager, NSObject)
+@interface RCT_EXTERN_REMAP_MODULE(TRNCompressor, TRNCompressorManager, NSObject)
 
 RCT_EXTERN_METHOD(
-    compressBase64: (NSString*) value
-    resolver: (RCTPromiseResolveBlock) resolve
-    rejecter: (RCTPromiseRejectBlock) reject
-)
-
-RCT_EXTERN_METHOD(
-    compressBase64: (NSString*) value
+    compress: (NSString*) value
     options: (NSDictionary*) options
     resolver: (RCTPromiseResolveBlock) resolve
     rejecter: (RCTPromiseRejectBlock) reject
