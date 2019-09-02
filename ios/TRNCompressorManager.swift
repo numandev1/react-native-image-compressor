@@ -11,42 +11,6 @@ import UIKit
 
 @objc(TRNCompressorManager)
 class TRNCompressorManager: NSObject {
-    private static func parseOptions(optionsDict: [String: Any]) -> Compressor.Options {
-        guard optionsDict else {
-            return Compressor.Options()
-        }
-        
-        var maxWidth: Int,
-            maxHeight: Int,
-            quality: Float,
-            output: Compressor.OutputType,
-            input: Compressor.InputType
-        
-        for (option, value) in optionsDict {
-            let stringValue = value as String
-            
-            switch (option) {
-            case "maxWidth":
-                maxWidth = Int(stringValue)
-            case "maxHeight":
-                maxHeight = Int(stringValue)
-            case "quality":
-                quality = Float(stringValue)
-            case "output":
-                output = Compressor.OutputType(stringValue)
-            case "input":
-                input = Compressor.InputType(stringValue)
-            }
-        }
-        
-        return Compressor.Options(
-            maxWidth: maxWidth,
-            maxHeight: maxHeight,
-            quality: quality,
-            outputType: output,
-            inputType: input)
-    }
-    
     @objc
     static func requiresMainQueueSetup() -> Bool {
         return false
@@ -60,7 +24,7 @@ class TRNCompressorManager: NSObject {
         rejecter reject: RCTPromiseRejectBlock
         ) -> Void {
         
-        let options: Compressor.Options = TRNCompressorManager.parseOptions(optionsDict)
+        let options: Compressor.Options = Compressor.Options.fromDict(optionsDict)
         
         do {
             let image: UIImage = options.input == Compressor.InputType.BASE64

@@ -5,6 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -48,11 +49,14 @@ repositories {
         // https://github.com/facebook/react-native/blob/0.60-stable/template/android/build.gradle#L28
         url "$projectDir/../node_modules/react-native/android"
     }
+    jcenter()
+    google()
     mavenCentral()
 }
 
 dependencies {
     implementation "com.facebook.react:react-native:${safeExtGet('reactnativeVersion', '+')}"
+    implementation 'org.jetbrains:annotations-java5:15.0'
 }
 
 def configureReactNativePom(def pom) {
