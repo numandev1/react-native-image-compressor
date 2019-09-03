@@ -1,9 +1,10 @@
 {
-  "name": "react-native-image-compressor",
+  "name": "@trunkrs/react-native-image-compressor",
   "title": "React Native Image Compressor",
-  "version": "1.0.0",
-  "description": "TODO",
-  "main": "index.js",
+  "version": "0.0.3",
+  "description": "A native image resizing & compression tool for iOS & Android.",
+  "main": "ImageCompressor.js",
+  "types": "ImageCompressor.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,8 +19,11 @@
     "android",
     "image",
     "compression",
+    "resize",
     "picture",
-    "photo"
+    "photo",
+    "jpeg",
+    "png"
   ],
   "author": {
     "name": "Trunkrs"

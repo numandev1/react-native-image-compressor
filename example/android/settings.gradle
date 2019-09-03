@@ -1,3 +1,8 @@
 rootProject.name = 'example'
+
+include ':@trunkrs_react-native-image-compressor'
+project(':@trunkrs_react-native-image-compressor').projectDir = new File(rootProject.projectDir, '../node_modules/@trunkrs/react-native-image-compressor/android')
+
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+
 include ':app'
