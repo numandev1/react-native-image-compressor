@@ -3,7 +3,7 @@ const { TRNCompressor } = NativeModules
 
 const base64UrlRegex = /^data:image\/.*;(?:charset=.{3,5};)?base64,/
 
-export class ImageCompressor {
+export default class ImageCompressor {
   static compress = async (value, options) => {
     if (!value) {
       throw new Error('Compression value is empty, please provide a value for compression.')

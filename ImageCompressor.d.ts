@@ -31,7 +31,7 @@ export interface CompressorOptions {
   output: OutputType
 }
 
-export class ImageCompressor {
+export default class ImageCompressor {
   /***
    * Resizes the image to the maximum boundary and compress into specified type
    * and quality.

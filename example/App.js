@@ -17,7 +17,7 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import {ImageCompressor} from '@trunkrs/react-native-image-compressor';
+import ImageCompressor from '@trunkrs/react-native-image-compressor';
 import * as Base64 from 'base-64'
 
 import * as data from './data.json'
