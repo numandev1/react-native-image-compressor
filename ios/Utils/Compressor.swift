@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Accelerate
+import CoreGraphics
 
 public class Compressor {
     private static func findTargetSize(image: UIImage, maxWidth: Int, maxHeight: Int) -> CGSize {
@@ -15,126 +17,105 @@ public class Compressor {
         let height: CGFloat = image.size.height
 
         if (width > height) {
-            let newHeight = height / (width / maxWidth)
-            return CGSize(maxWidth, newHeight)
+            let newHeight = height / (width / CGFloat(maxWidth))
+            return CGSize(width: CGFloat(maxWidth), height: newHeight)
         }
 
-        let newWidth = width / (height / maxHeight)
-        return CGSize(newWidth, maxHeight)
+        let newWidth = width / (height / CGFloat(maxHeight))
+        return CGSize(width: newWidth, height: CGFloat(maxHeight))
     }
 
     public static func decodeImage(base64String: String) throws -> UIImage {
-        let rawData = Data(base64Encoded: base64String, options: .ignoreUnknownCharacters)!
-
-        guard rawData else {
+        guard let rawData = Data(base64Encoded: base64String, options: .ignoreUnknownCharacters) else {
+            throw CompressionError.DecodingData
+        }
+        
+        guard let image = UIImage(data: rawData) else {
             throw CompressionError.DecodingData
         }
 
-        return UIImage(data: rawData)
+        return image
     }
 
     public static func loadImage(path: String) throws -> UIImage {
-        let rawData = UIImage(contentsOfFile: path)
-
-        guard rawData else {
+        guard let image = UIImage(contentsOfFile: path) else {
             throw CompressionError.FileNotFound
         }
 
-        return rawData
+        return image
+    }
+    
+    public static func resize(image: UIImage, maxWidth: Int, maxHeight: Int) throws -> UIImage {
+        let targetSize = findTargetSize(image: image, maxWidth: maxWidth, maxHeight: maxHeight)
+        guard let cgImage = image.cgImage else {
+            throw CompressionError.Drawing
+        }
+        
+        var format = vImage_CGImageFormat(bitsPerComponent: 8, bitsPerPixel: 32, colorSpace: nil,
+                             bitmapInfo: CGBitmapInfo(rawValue: CGImageAlphaInfo.first.rawValue),
+                             version: 0, decode: nil, renderingIntent: CGColorRenderingIntent.defaultIntent)
+        var sourceBuffer = vImage_Buffer()
+        
+        defer {
+            sourceBuffer.data.deallocate()
+        }
+        
+        var actionResult = vImageBuffer_InitWithCGImage(&sourceBuffer, &format, nil, cgImage, numericCast(kvImageNoFlags))
+        guard actionResult == kvImageNoError else {
+            throw CompressionError.Drawing
+        }
+        
+        let destWidth = Int(targetSize.width)
+        let destHeight = Int(targetSize.height)
+        let bytesPerPixel = cgImage.bitsPerPixel / 8
+        let destBytesPerRow = destWidth * bytesPerPixel
+        
+        var destData = UnsafeMutablePointer<UInt8>.allocate(capacity: destHeight * destBytesPerRow)
+        defer {
+            destData.deallocate()
+        }
+        
+        var destBuffer = vImage_Buffer(data: &destData, height: vImagePixelCount(destHeight), width: vImagePixelCount(destWidth), rowBytes: destBytesPerRow)
+        
+        actionResult = vImageScale_ARGB8888(&sourceBuffer, &destBuffer, nil, numericCast(kvImageHighQualityResampling))
+        guard actionResult == kvImageNoError else {
+            throw CompressionError.Drawing
+        }
+        
+        let resultCGImage = vImageCreateCGImageFromBuffer(&destBuffer, &format, nil, nil, numericCast(kvImageNoFlags), &actionResult)?.takeRetainedValue()
+        guard actionResult == kvImageNoError else {
+            throw CompressionError.Drawing
+        }
+        
+        let resultImage = resultCGImage.flatMap { UIImage(cgImage: $0, scale: 0.0, orientation: image.imageOrientation) }
+        return resultImage!
     }
 
-    public static func compress(
+    static func compress(
         image: UIImage,
-        output: OutputType,
-        quality: CGFloat = 1) throws -> String {
-        var data: Data
-
+        output: CompressorOptions.OutputType,
+        quality: Float = 1) throws -> String {
+        
+        var data: Data?
+        
         switch output {
-        case .PNG:
-            data = image.pngData()
+        case .JPG:
+            data = image.jpegData(compressionQuality: CGFloat(quality))
         default:
-            data = image.jpegData(compressionQuality: quality)
+            data = image.pngData()
         }
-
-        guard data else {
+        
+        guard data != nil else {
             throw CompressionError.EncodingData
         }
 
-        return data.base64EncodedString()
-    }
-
-    public static func resize(image: UIImage, maxWidth: Int, maxHeight: Int) -> UIImage {
-        let targetSize: CGSize = findTargetSize(image, maxWidth, maxHeight)
-        let targetRect: CGRect = CGRect(0, 0, targetSize.width, targetSize.height)
-
-        UIGraphicsBeginImageContextWithOptions(targetSize, false, 1.0)
-
-        image.draw(in: targetRect)
-        let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-
-        UIGraphicsEndImageContext()
-
-        return image
+        return data!.base64EncodedString()
     }
 
     public enum CompressionError: Error {
         case DecodingData
         case FileNotFound
         case EncodingData
-    }
-
-    enum OutputType: String {
-        case PNG = "png"
-        case JPG = "jpg"
-    }
-
-    enum InputType: String {
-        case BASE64 = "base64"
-        case URI = "uri"
-    }
-
-    @objc
-    struct Options {
-        public static func fromDict(optionsDict: [String: Any]) -> Options {
-            guard optionsDict else {
-                return Compressor.Options()
-            }
-            
-            var maxWidth: Int,
-                maxHeight: Int,
-                quality: Float,
-                output: Compressor.OutputType,
-                input: Compressor.InputType
-            
-            for (option, value) in optionsDict {
-                let stringValue = value as String
-                
-                switch (option) {
-                case "maxWidth":
-                    maxWidth = Int(stringValue)
-                case "maxHeight":
-                    maxHeight = Int(stringValue)
-                case "quality":
-                    quality = Float(stringValue)
-                case "output":
-                    output = OutputType(stringValue)
-                case "input":
-                    input = InputType(stringValue)
-                }
-            }
-            
-            return Compressor.Options(
-                maxWidth: maxWidth,
-                maxHeight: maxHeight,
-                quality: quality,
-                outputType: output,
-                inputType: input)
-        }
-        
-        let maxWidth: Int = 640
-        let maxHeight: Int = 480
-        let quality: Float = 1.0
-        let output: OutputType = OutputType.JPG
-        let input: InputType = InputType.BASE64
+        case Drawing
     }
 }

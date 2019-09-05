@@ -5,13 +5,12 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint .",
-    "postinstall": "node ../scripts/examples_postinstall.js"
+    "lint": "eslint ."
   },
   "dependencies": {
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "@trunkrs/react-native-image-compressor": "^0.0.3"
+    "@trunkrs/react-native-image-compressor": "^0.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
