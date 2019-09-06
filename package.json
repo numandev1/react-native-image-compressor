@@ -1,7 +1,7 @@
 {
   "name": "@trunkrs/react-native-image-compressor",
   "title": "React Native Image Compressor",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "A native image resizing & compression tool for iOS & Android.",
   "main": "ImageCompressor.js",
   "types": "ImageCompressor.d.ts",
