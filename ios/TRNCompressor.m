@@ -6,15 +6,44 @@
 //  Copyright © 2019 Trunkrs. All rights reserved.
 //
 
-#import "React/RCTBridgeModule.h"
+#import "Utils/Compressor.h"
+#import "Utils/CompressorOptions.h"
 
-@interface RCT_EXTERN_REMAP_MODULE(TRNCompressor, TRNCompressorManager, NSObject)
+#import "TRNCompressor.h"
 
-RCT_EXTERN_METHOD(
+@implementation TRNCompressor
+
+RCT_EXPORT_MODULE();
+
+RCT_EXPORT_METHOD(
     compress: (NSString*) value
-    options: (NSDictionary*) options
+    optionsDict: (NSDictionary*) optionsDict
     resolver: (RCTPromiseResolveBlock) resolve
-    rejecter: (RCTPromiseRejectBlock) reject
-)
+    rejecter: (RCTPromiseRejectBlock) reject) {
+    @try {
+        CompressorOptions *options = [CompressorOptions fromDictionary:optionsDict];
+        
+        UIImage *image;
+        switch (options.input) {
+            case base64:
+                image = [Compressor decodeImage: value];
+                break;
+            case uri:
+                image = [Compressor loadImage: value];
+                break;
+            default:
+                reject(@"unsupported_value", @"Unsupported value type.", nil);
+                return;
+        }
+        
+        UIImage *resizedImage = [Compressor resize:image maxWidth:options.maxWidth maxHeight:options.maxHeight];
+        NSString *result = [Compressor compress:resizedImage output:options.output quality:options.quality];
+        
+        resolve(result);
+    }
+    @catch (NSException *exception) {
+        reject(exception.name, exception.reason, nil);
+    }
+}
 
 @end

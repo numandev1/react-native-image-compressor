@@ -13,7 +13,6 @@ Pod::Spec.new do |s|
   s.authors       = { "Trunkrs" => "tech.support@trunkrs.nl" }
   s.platform      = :ios, "9.0"
   s.source        = { :git => "https://github.com/Trunkrs/react-native-image-compressor.git", :tag => "#{s.version}" }
-  s.swift_version = '5.0'
 
   s.source_files  = "ios/**/*.{h,m,swift}"
   s.requires_arc  = true

@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		10C8E35998D1861075706E3D /* libPods-TRNReactNativeImageCompressor.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 381B79E7DFB0E86273FEB933 /* libPods-TRNReactNativeImageCompressor.a */; };
-		B0AA1F402321122100DC8431 /* CompressorOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AA1F3F2321122100DC8431 /* CompressorOptions.swift */; };
-		B0E9C60023194A92001191D6 /* TRNCompressorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C5FF23194A92001191D6 /* TRNCompressorManager.swift */; };
+		B02F10132321389C00164FBE /* Compressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B02F10122321389C00164FBE /* Compressor.m */; };
+		B02F10172321455500164FBE /* CompressorOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = B02F10162321455500164FBE /* CompressorOptions.m */; };
 		B0E9C60223194B28001191D6 /* TRNCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C60123194B28001191D6 /* TRNCompressor.m */; };
-		B0E9C60E23195C3B001191D6 /* Compressor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C60D23195C3B001191D6 /* Compressor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,14 +26,12 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libTRNReactNativeImageCompressor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTRNReactNativeImageCompressor.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3083906B38AB683F852D0A10 /* Pods-TRNReactNativeImageCompressor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRNReactNativeImageCompressor.debug.xcconfig"; path = "Target Support Files/Pods-TRNReactNativeImageCompressor/Pods-TRNReactNativeImageCompressor.debug.xcconfig"; sourceTree = "<group>"; };
-		381B79E7DFB0E86273FEB933 /* libPods-TRNReactNativeImageCompressor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TRNReactNativeImageCompressor.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0AA1F3F2321122100DC8431 /* CompressorOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompressorOptions.swift; sourceTree = "<group>"; };
-		B0E9C5FE23194A92001191D6 /* TRNReactNativeImageCompressor-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TRNReactNativeImageCompressor-Bridging-Header.h"; sourceTree = "<group>"; };
-		B0E9C5FF23194A92001191D6 /* TRNCompressorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRNCompressorManager.swift; sourceTree = "<group>"; };
+		B02F10122321389C00164FBE /* Compressor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Compressor.m; sourceTree = "<group>"; };
+		B02F1014232138BA00164FBE /* Compressor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Compressor.h; sourceTree = "<group>"; };
+		B02F10152321418900164FBE /* CompressorOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompressorOptions.h; sourceTree = "<group>"; };
+		B02F10162321455500164FBE /* CompressorOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompressorOptions.m; sourceTree = "<group>"; };
+		B0BDAFA8232191A400A49D3A /* TRNCompressor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRNCompressor.h; sourceTree = "<group>"; };
 		B0E9C60123194B28001191D6 /* TRNCompressor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRNCompressor.m; sourceTree = "<group>"; };
-		B0E9C60D23195C3B001191D6 /* Compressor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Compressor.swift; sourceTree = "<group>"; };
-		CEC86945C4629C3A6B982DCF /* Pods-TRNReactNativeImageCompressor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TRNReactNativeImageCompressor.release.xcconfig"; path = "Target Support Files/Pods-TRNReactNativeImageCompressor/Pods-TRNReactNativeImageCompressor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,7 +39,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10C8E35998D1861075706E3D /* libPods-TRNReactNativeImageCompressor.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,41 +53,23 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		47FD578392B062CEF6C3411A /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				381B79E7DFB0E86273FEB933 /* libPods-TRNReactNativeImageCompressor.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5657F7EBF4102FAC70AF2807 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3083906B38AB683F852D0A10 /* Pods-TRNReactNativeImageCompressor.debug.xcconfig */,
-				CEC86945C4629C3A6B982DCF /* Pods-TRNReactNativeImageCompressor.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				B0BDAFA8232191A400A49D3A /* TRNCompressor.h */,
 				B0E9C606231955E1001191D6 /* Utils */,
 				B0E9C60123194B28001191D6 /* TRNCompressor.m */,
-				B0E9C5FF23194A92001191D6 /* TRNCompressorManager.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
-				B0E9C5FE23194A92001191D6 /* TRNReactNativeImageCompressor-Bridging-Header.h */,
-				47FD578392B062CEF6C3411A /* Frameworks */,
-				5657F7EBF4102FAC70AF2807 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
 		B0E9C606231955E1001191D6 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				B0E9C60D23195C3B001191D6 /* Compressor.swift */,
-				B0AA1F3F2321122100DC8431 /* CompressorOptions.swift */,
+				B02F10122321389C00164FBE /* Compressor.m */,
+				B02F1014232138BA00164FBE /* Compressor.h */,
+				B02F10152321418900164FBE /* CompressorOptions.h */,
+				B02F10162321455500164FBE /* CompressorOptions.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -104,7 +81,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 58B511EF1A9E6C8500147676 /* Build configuration list for PBXNativeTarget "TRNReactNativeImageCompressor" */;
 			buildPhases = (
-				13C3A41C18966F3CF3708673 /* [CP] Check Pods Manifest.lock */,
 				58B511D71A9E6C8500147676 /* Sources */,
 				58B511D81A9E6C8500147676 /* Frameworks */,
 				58B511D91A9E6C8500147676 /* CopyFiles */,
@@ -125,7 +101,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0920;
-				ORGANIZATIONNAME = Facebook;
+				ORGANIZATIONNAME = Trunkrs;
 				TargetAttributes = {
 					58B511DA1A9E6C8500147676 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -151,40 +127,14 @@
 		};
 /* End PBXProject section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		13C3A41C18966F3CF3708673 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TRNReactNativeImageCompressor-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		58B511D71A9E6C8500147676 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0E9C60E23195C3B001191D6 /* Compressor.swift in Sources */,
-				B0E9C60023194A92001191D6 /* TRNCompressorManager.swift in Sources */,
+				B02F10132321389C00164FBE /* Compressor.m in Sources */,
 				B0E9C60223194B28001191D6 /* TRNCompressor.m in Sources */,
-				B0AA1F402321122100DC8431 /* CompressorOptions.swift in Sources */,
+				B02F10172321455500164FBE /* CompressorOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,9 +251,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TRNReactNativeImageCompressor;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TRNReactNativeImageCompressor-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -324,8 +271,6 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = TRNReactNativeImageCompressor;
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "TRNReactNativeImageCompressor-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

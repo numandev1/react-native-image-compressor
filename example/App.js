@@ -32,11 +32,16 @@ export default class App extends Component {
     status: 'compressing...',
     compressedData1: null,
     compressedData2: null,
+    compressedData3: null,
   };
 
   async componentDidMount() {
     try {
-      const [compressedData1, compressedData2] = await Promise.all([
+      const [
+        compressedData1,
+        compressedData2,
+        compressedData3,
+      ] = await Promise.all([
         ImageCompressor.compress(data.image1, {
           maxWidth: 1000,
           maxHeight: 1000,
@@ -51,11 +56,19 @@ export default class App extends Component {
           output: 'jpg',
           quality: 0.9,
         }),
+        ImageCompressor.compress(data.image3, {
+          maxWidth: 1000,
+          maxHeight: 1000,
+          input: 'base64',
+          output: 'jpg',
+          quality: 0.9,
+        }),
       ])
 
       this.setState({
         compressedData1,
         compressedData2,
+        compressedData3,
         status: 'Compression done.',
       })
     } catch (error) {
@@ -65,7 +78,7 @@ export default class App extends Component {
   }
 
   render() {
-    const {compressedData1, compressedData2} = this.state;
+    const {compressedData1, compressedData2, compressedData3} = this.state;
 
     return (
       <View style={styles.container}>
@@ -92,6 +105,15 @@ export default class App extends Component {
             Compressed 2{!!compressedData2 && ` (${base64Length(compressedData2)} KB)`}:
           </Text>
           <Image style={styles.image} source={{uri: `data:image/jpeg;base64,${compressedData2}`}} />
+
+          <Text style={styles.instructions}>
+            Original 3: ({base64Length(data.image3)} KB)
+          </Text>
+          <Image style={styles.image} source={{uri: `data:image/jpeg;base64,${data.image3}`}} />
+          <Text style={styles.instructions}>
+            Compressed 3{!!compressedData3 && ` (${base64Length(compressedData3)} KB)`}:
+          </Text>
+          <Image style={styles.image} source={{uri: `data:image/jpeg;base64,${compressedData3}`}} />
         </ScrollView>
       </View>
     );
