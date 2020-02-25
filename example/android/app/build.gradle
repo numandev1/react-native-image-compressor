@@ -188,7 +188,7 @@ android {
 }
 
 dependencies {
-    implementation project(':@trunkrs_react-native-image-compressor')
+    implementation project(':@nomi9995_react-native-image-compressor')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

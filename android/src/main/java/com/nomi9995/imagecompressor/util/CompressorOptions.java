@@ -1,4 +1,4 @@
-package com.trunkrs.imagecompressor.util;
+package com.nomi9995.imagecompressor.util;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;

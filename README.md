@@ -4,13 +4,13 @@ A simple image resizing and compression package, taking care of the resizing pro
 
 ## Getting started
 
-`$ npm install @trunkrs/react-native-image-compressor --save`
+`$ npm install @nomi9995/react-native-image-compressor --save`
 
-`$ yarn add @trunkrs/react-native-image-compressor`
+`$ yarn add @nomi9995/react-native-image-compressor`
 
 ### Mostly automatic installation
 
-`$ react-native link @trunkrs/react-native-image-compressor`
+`$ react-native link @nomi9995/react-native-image-compressor`
 
 ### Manual installation
 
@@ -25,22 +25,22 @@ A simple image resizing and compression package, taking care of the resizing pro
 #### Android
 
 1. Open up `android/app/src/main/java/[...]/MainApplication.java`
-  - Add `import com.trunkrs.imagecompressor.TRNReactNativeImageCompressorPackage;` to the imports at the top of the file
+  - Add `import com.nomi9995.imagecompressor.TRNReactNativeImageCompressorPackage;` to the imports at the top of the file
   - Add `new TRNReactNativeImageCompressorPackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
-  	include ':@trunkrs_react-native-image-compressor'
-  	project(':@trunkrs_react-native-image-compressor').projectDir = new File(rootProject.projectDir, 	'../node_modules/@trunkrs/react-native-image-compressor/android')
+  	include ':@nomi9995_react-native-image-compressor'
+  	project(':@nomi9995_react-native-image-compressor').projectDir = new File(rootProject.projectDir, 	'../node_modules/@nomi9995/react-native-image-compressor/android')
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      implementation project(':@trunkrs_react-native-image-compressor')
+      implementation project(':@nomi9995_react-native-image-compressor')
   	```
 
 
 ## Usage
 ```javascript
-import ImageCompressor from '@trunkrs/react-native-image-compressor'
+import ImageCompressor from '@nomi9995/react-native-image-compressor'
 
 const result = await ImageCompressor.compress('file://bowling-alleys/the-dude.jpg', {
     maxWidth: 1000,

@@ -1,4 +1,4 @@
-package com.trunkrs.imagecompressor.util;
+package com.nomi9995.imagecompressor.util;
 
 public class ImageSize {
     public int width;

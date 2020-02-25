@@ -1,4 +1,4 @@
-package com.trunkrs.imagecompressor;
+package com.nomi9995.imagecompressor;
 
 import android.graphics.Bitmap;
 
@@ -8,7 +8,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
-import com.trunkrs.imagecompressor.util.CompressorOptions;
+import com.nomi9995.imagecompressor.util.CompressorOptions;
 
 import java.io.IOException;
 

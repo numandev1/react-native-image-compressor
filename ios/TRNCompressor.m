@@ -3,7 +3,7 @@
 //  TRNReactNativeImageCompressor
 //
 //  Created by Leonard Breitkopf on 30/08/2019.
-//  Copyright © 2019 Trunkrs. All rights reserved.
+//  Copyright © 2019 nomi9995. All rights reserved.
 //
 
 #import "Utils/Compressor.h"

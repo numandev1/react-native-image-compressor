@@ -1,4 +1,4 @@
-package com.trunkrs.imagecompressor;
+package com.nomi9995.imagecompressor;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,8 +7,8 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.Base64;
 
-import com.trunkrs.imagecompressor.util.CompressorOptions;
-import com.trunkrs.imagecompressor.util.ImageSize;
+import com.nomi9995.imagecompressor.util.CompressorOptions;
+import com.nomi9995.imagecompressor.util.ImageSize;
 
 import java.io.ByteArrayOutputStream;
 

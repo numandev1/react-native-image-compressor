@@ -1,4 +1,4 @@
-package com.trunkrs.imagecompressor;
+package com.nomi9995.imagecompressor;
 
 import java.util.Arrays;
 import java.util.Collections;
