@@ -1,11 +1,11 @@
-package com.nomi9995.imagecompressor.util;
+package com.nomi9995.imagecompressor.utils;
 
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.ReadableMapKeySetIterator;
 
-public class CompressorOptions {
-    public static CompressorOptions fromMap(ReadableMap map) {
-        final CompressorOptions options = new CompressorOptions();
+public class ImageCompressorOptions {
+    public static ImageCompressorOptions fromMap(ReadableMap map) {
+        final ImageCompressorOptions options = new ImageCompressorOptions();
         final ReadableMapKeySetIterator iterator = map.keySetIterator();
 
         while (iterator.hasNextKey()) {
@@ -27,6 +27,9 @@ public class CompressorOptions {
                 case "output":
                     options.output = OutputType.valueOf(map.getString(key));
                     break;
+              case "returnableOutputType":
+                options.returnableOutputType = ReturnableOutputType.valueOf(map.getString(key));
+                break;
             }
         }
 
@@ -41,9 +44,14 @@ public class CompressorOptions {
         png, jpg
     }
 
+  public enum ReturnableOutputType {
+    base64, uri
+  }
+
     public int maxWidth = 640;
     public int maxHeight = 480;
     public float quality = 1.0f;
-    public InputType input = InputType.base64;
+    public InputType input = InputType.uri;
     public OutputType output = OutputType.jpg;
+  public ReturnableOutputType returnableOutputType = ReturnableOutputType.uri;
 }

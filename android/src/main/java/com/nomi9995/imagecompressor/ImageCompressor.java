@@ -7,13 +7,17 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.util.Base64;
 
-import com.nomi9995.imagecompressor.util.CompressorOptions;
-import com.nomi9995.imagecompressor.util.ImageSize;
+import com.facebook.react.bridge.ReactApplicationContext;
+import com.nomi9995.imagecompressor.utils.ImageCompressorOptions;
+import com.nomi9995.imagecompressor.utils.ImageSize;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
+import static com.nomi9995.imagecompressor.utils.Utils.generateCacheFilePath;
 
-class Compressor {
-    static ImageSize findActualSize(Bitmap image, int maxWidth, int maxHeight) {
+
+public class ImageCompressor {
+  public static ImageSize findActualSize(Bitmap image, int maxWidth, int maxHeight) {
         final float width = (float) image.getWidth();
         final float height = (float) image.getHeight();
 
@@ -30,20 +34,44 @@ class Compressor {
         return new ImageSize(newWidth, maxHeight, scale);
     }
 
-    static Bitmap decodeImage(String value) {
+    public static Bitmap decodeImage(String value) {
         final byte[] data = Base64.decode(value, Base64.DEFAULT);
         return BitmapFactory.decodeByteArray(data, 0, data.length);
     }
 
-    static Bitmap loadImage(String value) {
-        return BitmapFactory.decodeFile(value);
+    public static Bitmap loadImage(String value) {
+      String filePath=value;
+    if(value.indexOf("file:/")>-1)
+    {
+      filePath=value.substring( value.indexOf( ':' ) + 1 );
+    }
+      Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+        return bitmap;
     }
 
-    static String encodeImage(byte[] imageData) {
-        return Base64.encodeToString(imageData, Base64.DEFAULT);
+
+
+  public static String encodeImage(ByteArrayOutputStream imageDataByteArrayOutputStream, Boolean isBase64, Bitmap bitmapImage,String outputExtension, ReactApplicationContext reactContext) {
+    if(isBase64)
+    {
+      byte[] imageData=imageDataByteArrayOutputStream.toByteArray();
+      return Base64.encodeToString(imageData, Base64.DEFAULT);
+    }
+    else
+    {
+      String outputUri=generateCacheFilePath(outputExtension,reactContext);
+      try {
+        FileOutputStream fos=new FileOutputStream(outputUri);
+        imageDataByteArrayOutputStream.writeTo(fos);
+        return "file:/"+outputUri;
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  return  "";
     }
 
-    static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
+  public static Bitmap resize(Bitmap image, int maxWidth, int maxHeight) {
         final ImageSize size = findActualSize(image, maxWidth, maxHeight);
 
         final Bitmap scaledImage = Bitmap.createBitmap(size.width, size.height, image.getConfig());
@@ -62,14 +90,13 @@ class Compressor {
         return scaledImage;
     }
 
-    static byte[] compress(Bitmap image, CompressorOptions.OutputType output, float quality) {
+  public static ByteArrayOutputStream compress(Bitmap image, ImageCompressorOptions.OutputType output, float quality) {
         final ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        final Bitmap.CompressFormat format = output == CompressorOptions.OutputType.jpg
+        final Bitmap.CompressFormat format = output == ImageCompressorOptions.OutputType.jpg
                 ? Bitmap.CompressFormat.JPEG
                 : Bitmap.CompressFormat.PNG;
 
         image.compress(format, Math.round(100 * quality), stream);
-
-        return stream.toByteArray();
+        return stream;
     }
 }

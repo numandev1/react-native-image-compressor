@@ -1,17 +1,9 @@
-//
-//  Compressor.m
-//  TRNReactNativeImageCompressor
-//
-//  Created by Leonard Breitkopf on 05/09/2019.
-//  Copyright © 2019 nomi9995. All rights reserved.
-//
-
 #import <Accelerate/Accelerate.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-#import "Compressor.h"
+#import "ImageCompressor.h"
 
-@implementation Compressor
+@implementation ImageCompressor
 + (CGSize) findTargetSize: (UIImage *) image maxWidth: (int) maxWidth maxHeight: (int) maxHeight {
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
@@ -27,11 +19,18 @@
 
 +(UIImage *) decodeImage: (NSString *) value {
     NSData *data = [[NSData alloc] initWithBase64EncodedString:value options: NSDataBase64DecodingIgnoreUnknownCharacters];
-    return [[UIImage alloc] initWithData: data];
+    return [[UIImage alloc] initWithData:data];
 }
 
 +(UIImage *) loadImage:(NSString *)path {
-    return [[UIImage alloc] initWithContentsOfFile: path];
+    UIImage *image=nil;
+    if ([path hasPrefix:@"data:"] || [path hasPrefix:@"file:"]) {
+            NSURL *imageUrl = [[NSURL alloc] initWithString:path];
+            image = [UIImage imageWithData:[NSData dataWithContentsOfURL:imageUrl]];
+          } else {
+            image = [[UIImage alloc] initWithContentsOfFile:path];
+          }
+    return image;
 }
 
 
@@ -93,12 +92,13 @@
     CGColorSpaceRelease(colorSpace);
     CGContextRelease(targetContext);
     
-    free(&targetData);
+    
+    free(targetData);
     
     return resizedImage;
 }
 
-+(NSString *)compress:(UIImage *)image output:(enum OutputType)output quality:(float)quality {
++(NSString *)compress:(UIImage *)image output:(enum OutputType)output quality:(float)quality outputExtension:(NSString*)outputExtension isBase64:(Boolean)isBase64{
     NSData *data;
     NSException *exception;
     
@@ -113,7 +113,26 @@
             exception = [[NSException alloc] initWithName: @"unsupported_format" reason:@"This format is not supported." userInfo:nil];
             @throw exception;
     }
-    
-    return [data base64EncodedStringWithOptions: 0];
+  
+    if(isBase64)
+    {
+        return [data base64EncodedStringWithOptions:0];
+    }
+    else
+    {
+        NSString *filePath =[self generateCacheFilePath:outputExtension];
+        [data writeToFile:filePath atomically:YES];
+        return [NSString stringWithFormat: @"file:/%@", filePath];
+    }
 }
+
++ (NSString *)generateCacheFilePath:(NSString *)extension{
+    NSUUID *uuid = [NSUUID UUID];
+    NSString *imageNameWihtoutExtension = [uuid UUIDString];
+    NSString *imageName=[imageNameWihtoutExtension stringByAppendingPathExtension:extension];
+    NSString *filePath =
+        [NSTemporaryDirectory() stringByAppendingPathComponent:imageName];
+    return filePath;
+}
+
 @end

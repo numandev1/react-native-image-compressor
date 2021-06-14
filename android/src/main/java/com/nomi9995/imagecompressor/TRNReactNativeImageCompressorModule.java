@@ -8,8 +8,9 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReadableMap;
-import com.nomi9995.imagecompressor.util.CompressorOptions;
+import com.nomi9995.imagecompressor.utils.ImageCompressorOptions;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 public class TRNReactNativeImageCompressorModule extends ReactContextBaseJavaModule {
@@ -31,19 +32,21 @@ public class TRNReactNativeImageCompressorModule extends ReactContextBaseJavaMod
             String value,
             ReadableMap optionMap,
             Promise promise) {
-        try {
-            final CompressorOptions options = CompressorOptions.fromMap(optionMap);
-            final Bitmap image = options.input == CompressorOptions.InputType.base64
-                    ? Compressor.decodeImage(value)
-                    : Compressor.loadImage(value);
+         try {
+      final ImageCompressorOptions options = ImageCompressorOptions.fromMap(optionMap);
+      final Bitmap image = options.input == ImageCompressorOptions.InputType.base64
+        ? ImageCompressor.decodeImage(value)
+        : ImageCompressor.loadImage(value);
 
-            final Bitmap resizedImage = Compressor.resize(image, options.maxWidth, options.maxHeight);
-            final byte[] imageData = Compressor.compress(resizedImage, options.output, options.quality);
-            final String base64Result = Compressor.encodeImage(imageData);
+      final Bitmap resizedImage = ImageCompressor.resize(image, options.maxWidth, options.maxHeight);
+      final ByteArrayOutputStream imageDataByteArrayOutputStream = ImageCompressor.compress(resizedImage, options.output, options.quality);
+      Boolean isBase64=options.returnableOutputType==ImageCompressorOptions.ReturnableOutputType.base64;
 
-            promise.resolve(base64Result);
-        } catch (Exception ex) {
-            promise.reject(ex);
-        }
+      final String returnableResult = ImageCompressor.encodeImage(imageDataByteArrayOutputStream,isBase64,image,options.output.toString(),this.reactContext);
+
+      promise.resolve(returnableResult);
+    } catch (Exception ex) {
+      promise.reject(ex);
+    }
     }
 }

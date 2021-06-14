@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B02F10132321389C00164FBE /* Compressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B02F10122321389C00164FBE /* Compressor.m */; };
-		B02F10172321455500164FBE /* CompressorOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = B02F10162321455500164FBE /* CompressorOptions.m */; };
 		B0E9C60223194B28001191D6 /* TRNCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = B0E9C60123194B28001191D6 /* TRNCompressor.m */; };
 /* End PBXBuildFile section */
 
@@ -26,10 +24,7 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libTRNReactNativeImageCompressor.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTRNReactNativeImageCompressor.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B02F10122321389C00164FBE /* Compressor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Compressor.m; sourceTree = "<group>"; };
-		B02F1014232138BA00164FBE /* Compressor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Compressor.h; sourceTree = "<group>"; };
-		B02F10152321418900164FBE /* CompressorOptions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CompressorOptions.h; sourceTree = "<group>"; };
-		B02F10162321455500164FBE /* CompressorOptions.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CompressorOptions.m; sourceTree = "<group>"; };
+		18E86B4D2677F71F000CE1F3 /* Utils */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Utils; sourceTree = "<group>"; };
 		B0BDAFA8232191A400A49D3A /* TRNCompressor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TRNCompressor.h; sourceTree = "<group>"; };
 		B0E9C60123194B28001191D6 /* TRNCompressor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TRNCompressor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,21 +52,10 @@
 			isa = PBXGroup;
 			children = (
 				B0BDAFA8232191A400A49D3A /* TRNCompressor.h */,
-				B0E9C606231955E1001191D6 /* Utils */,
 				B0E9C60123194B28001191D6 /* TRNCompressor.m */,
+				18E86B4D2677F71F000CE1F3 /* Utils */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		B0E9C606231955E1001191D6 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				B02F10122321389C00164FBE /* Compressor.m */,
-				B02F1014232138BA00164FBE /* Compressor.h */,
-				B02F10152321418900164FBE /* CompressorOptions.h */,
-				B02F10162321455500164FBE /* CompressorOptions.m */,
-			);
-			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -132,9 +116,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B02F10132321389C00164FBE /* Compressor.m in Sources */,
 				B0E9C60223194B28001191D6 /* TRNCompressor.m in Sources */,
-				B02F10172321455500164FBE /* CompressorOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +218,6 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3083906B38AB683F852D0A10 /* Pods-TRNReactNativeImageCompressor.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
@@ -256,7 +237,6 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEC86945C4629C3A6B982DCF /* Pods-TRNReactNativeImageCompressor.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (

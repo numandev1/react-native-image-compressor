@@ -1,4 +1,4 @@
-package com.nomi9995.imagecompressor.util;
+package com.nomi9995.imagecompressor.utils;
 
 public class ImageSize {
     public int width;

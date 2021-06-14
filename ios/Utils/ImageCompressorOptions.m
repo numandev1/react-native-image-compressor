@@ -1,19 +1,11 @@
-//
-//  CompressorOptions.m
-//  TRNReactNativeImageCompressor
-//
-//  Created by Leonard Breitkopf on 05/09/2019.
-//  Copyright © 2019 nomi9995. All rights reserved.
-//
-
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "CompressorOptions.h"
+#import "ImageCompressorOptions.h"
 
-@implementation CompressorOptions
-+ (CompressorOptions*) fromDictionary:(NSDictionary *)dictionary {
-    CompressorOptions *options = [[CompressorOptions alloc] init];
+@implementation ImageCompressorOptions
++ (ImageCompressorOptions*) fromDictionary:(NSDictionary *)dictionary {
+    ImageCompressorOptions *options = [[ImageCompressorOptions alloc] init];
     
     if (dictionary == nil) {
         return options;
@@ -32,10 +24,23 @@
             [options parseInput: value];
         } else if ([key isEqual:@"output"]) {
             [options parseOutput: value];
+        } else if ([key isEqual:@"returnableOutputType"]) {
+            [options parseReturnableOutput: value];
         }
     }
     
     return options;
+}
+
++ (NSString *) getOutputInString:(enum OutputType*)output{
+    if(output==jpg)
+   {
+       return  @"jpg";
+   }
+    else
+    {
+        return @"png";
+    }
 }
 
 - (instancetype) init {
@@ -45,8 +50,9 @@
         self.maxWidth = 640;
         self.maxHeight = 480;
         self.quality = 1.0f;
-        self.input = base64;
+        self.input = uri;
         self.output = jpg;
+        self.returnableOutputType = uri;
     }
     
     return self;
@@ -57,12 +63,20 @@
 @synthesize quality;
 @synthesize input;
 @synthesize output;
+@synthesize returnableOutputType;
 
 - (void) parseInput:(NSString*)input {
     NSDictionary *inputTranslations = @{ @"base64": @(base64), @"uri": @(uri) };
     NSNumber *enumValue = [inputTranslations objectForKey: input];
     
     self.input = [enumValue longValue];
+}
+
+- (void) parseReturnableOutput:(NSString*)input {
+    NSDictionary *inputTranslations = @{ @"base64": @(rbase64), @"uri": @(ruri) };
+    NSNumber *enumValue = [inputTranslations objectForKey: input];
+    
+    self.returnableOutputType = [enumValue longValue];
 }
 
 - (void) parseOutput:(NSString*)output {
