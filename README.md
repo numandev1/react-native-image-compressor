@@ -1,3 +1,8 @@
+# 🚧 🚧 🚧
+## react-native-image-compressor is deprecated.
+
+react-native-image-compressor is now deprecated in favor of [react-native-compressor](https://github.com/numandev1/react-native-compressor).
+
 # react-native-image-compressor
 
 A simple image resizing and compression package, taking care of the resizing process on the native side. Supports iOS and Android out of the box.
